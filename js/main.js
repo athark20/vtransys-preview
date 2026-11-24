@@ -87,33 +87,6 @@
     counters.forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
   }
 
-  /* ---------- Hero readout: a gently drifting sample reading ---------- */
-  var ethanol = doc.querySelector('[data-readout="ethanol"]');
-  var temp = doc.querySelector('[data-readout="temp"]');
-  if (ethanol && temp && !reduce) {
-    var eth = 20.4, tmp = 31.2;
-    function drift(el, cur, next, decimals, done) {
-      var start = null, dur = 1800;
-      function step(ts) {
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / dur, 1);
-        var e = p < .5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-        el.textContent = (cur + (next - cur) * e).toFixed(decimals);
-        if (p < 1) requestAnimationFrame(step); else done(next);
-      }
-      requestAnimationFrame(step);
-    }
-    function tick() {
-      if (doc.hidden) { setTimeout(tick, 4000); return; }
-      var nextEth = +(19.6 + Math.random() * 1.4).toFixed(1);
-      var nextTmp = +(30.4 + Math.random() * 1.8).toFixed(1);
-      drift(ethanol, eth, nextEth, 1, function (v) { eth = v; });
-      drift(temp, tmp, nextTmp, 1, function (v) { tmp = v; });
-      setTimeout(tick, 4200 + Math.random() * 2000);
-    }
-    setTimeout(tick, 3200);
-  }
-
   /* ---------- Forms: validate, submit without leaving the page ---------- */
   doc.querySelectorAll('[data-form]').forEach(function (form) {
     var msg = form.querySelector('.form__msg');

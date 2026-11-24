@@ -111,36 +111,20 @@ table { border-collapse: collapse; width: 100%; }
   background-size: 48px 48px; animation: grid-drift 40s linear infinite; }
 .hero::after { content: ""; position: absolute; z-index: -1; width: 60vw; height: 60vw; max-width: 900px; max-height: 900px; right: -20vw; top: -20vw; border-radius: 50%;
   background: radial-gradient(closest-side, rgba(209, 32, 40, .28), transparent 70%); filter: blur(10px); animation: glow 9s ease-in-out infinite alternate; }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding: clamp(64px, 9vw, 110px) 0 clamp(56px, 7vw, 88px); }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); padding: clamp(72px, 10vw, 128px) 0 clamp(56px, 7vw, 88px); }
 .hero__copy > * { animation: rise .9s var(--ease) both; }
 .hero__copy > :nth-child(1) { animation-delay: .05s; }
 .hero__copy > :nth-child(2) { animation-delay: .15s; }
 .hero__copy > :nth-child(3) { animation-delay: .3s; }
 .hero__copy > :nth-child(4) { animation-delay: .45s; }
 .hero__copy > :nth-child(5) { animation-delay: .6s; }
-.hero__title { max-width: 16ch; }
-.hero__lead { margin-top: 24px; }
+.hero__title { max-width: 18ch; }
+.hero__lead { margin-top: 24px; max-width: 66ch; }
 .hero__cta { margin-top: 32px; }
 .hero__stats { display: flex; gap: 40px; flex-wrap: wrap; margin: 40px 0 0; padding-top: 28px; border-top: 1px solid rgba(255, 255, 255, .14); }
 .hero__stats div { display: flex; flex-direction: column-reverse; gap: 4px; }
 .hero__stats dd { margin: 0; font-size: 1.9rem; font-weight: 500; line-height: 1; }
 .hero__stats dt { font-size: .8125rem; color: rgba(255, 255, 255, .66); }
-
-/* Readout card */
-.readout { background: var(--ink-2); border: 1px solid rgba(255, 255, 255, .14); border-radius: 16px; padding: 26px; display: grid; gap: 16px; box-shadow: 0 30px 60px rgba(0, 0, 0, .45); animation: rise 1s var(--ease) .35s both, float 7s ease-in-out 1.4s infinite; }
-.readout__bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .62); flex-wrap: wrap; }
-.readout__status { display: inline-flex; align-items: center; gap: 6px; color: var(--ok); letter-spacing: 0; text-transform: none; font-size: .8rem; }
-.readout__status i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(139, 232, 176, .6); animation: pulse 2s ease-out infinite; }
-.readout__main { position: relative; background: var(--ink); border-radius: 12px; padding: 22px 22px 56px; display: grid; gap: 6px; overflow: hidden; }
-.readout__label { font-size: .8125rem; color: rgba(255, 255, 255, .62); }
-.readout__value { font-size: clamp(3rem, 6vw, 3.75rem); line-height: 1; font-weight: 500; font-variant-numeric: tabular-nums; }
-.readout__value small { font-size: .4em; color: rgba(255, 255, 255, .62); }
-.readout__trace { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 48px; opacity: .9; }
-.readout__trace path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 3s var(--ease) 1s forwards; }
-.readout__cells { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.readout__cells div { background: var(--ink); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
-.readout__cell { font-size: 1.4rem; font-variant-numeric: tabular-nums; }
-.readout__foot { font-size: .75rem; color: rgba(255, 255, 255, .62); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
 /* ---------- Trust marquee ---------- */
 .trust { border-bottom: 1px solid var(--line); background: var(--paper); }
@@ -362,9 +346,6 @@ article .page-hero { margin-top: 10px; background: var(--paper); border-top: 0; 
 .no-js [data-reveal], .no-js [data-stagger] > * { opacity: 1; transform: none; }
 @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(139, 232, 176, .6); } 100% { box-shadow: 0 0 0 10px rgba(139, 232, 176, 0); } }
-@keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes grid-drift { from { transform: translate(0, 0); } to { transform: translate(48px, 48px); } }
 @keyframes glow { from { transform: translate(0, 0) scale(1); opacity: .8; } to { transform: translate(-6%, 8%) scale(1.12); opacity: 1; } }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -374,7 +355,6 @@ article .page-hero { margin-top: 10px; background: var(--paper); border-top: 0; 
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
   [data-reveal], [data-stagger] > * { opacity: 1; transform: none; }
   .marquee__track { animation: none; }
-  .readout__trace path { stroke-dashoffset: 0; }
 }
 
 /* ---------- Responsive ---------- */
@@ -394,7 +374,7 @@ article .page-hero { margin-top: 10px; background: var(--paper); border-top: 0; 
   .nav-row__cta { display: none; }
   .nav-toggle { display: inline-flex; }
   .topbar__note { display: none; }
-  .hero__grid, .story__in, .split, .split--text, .split--why, .page-hero__grid, .contact, .feature-story { grid-template-columns: 1fr; }
+  .story__in, .split, .split--text, .split--why, .page-hero__grid, .contact, .feature-story { grid-template-columns: 1fr; }
   .hero__title { max-width: none; }
   .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pillars { grid-template-columns: 1fr; }
@@ -418,7 +398,6 @@ article .page-hero { margin-top: 10px; background: var(--paper); border-top: 0; 
   .spec th { width: 40%; }
   .btn-row .btn { flex: 1 1 auto; }
   .cta__in { display: grid; }
-  .readout { padding: 20px; }
 }
 @media print {
   .site-header, .to-top, .cta, .form, .map { display: none; }
